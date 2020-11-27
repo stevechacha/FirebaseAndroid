@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">FirebaseAndroid</string>
+    <string name="register">register</string>
+    <string name="confirm_password">confirm_password</string>
+    <string name="password">password</string>
+    <string name="email">email</string>
+    <string name="email_registration">email_registration</string>
+    <string name="webclient_id">80356747430-msivb2fecakjvs0ng9maimd83ldlmivk.apps.googleusercontent.com</string>
+</resources>

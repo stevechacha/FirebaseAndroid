@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UpdateProfileActivity">
+
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <RelativeLayout
+                android:id="@+id/relLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/textEmailReg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="30dp"
+                    android:text="Update Profile"
+                    android:textSize="25sp" />
+
+
+                <EditText
+                    android:id="@+id/update_FirstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textEmailReg"
+                    android:layout_marginTop="30dp"
+                    android:hint="First Name"
+                    android:inputType="textPersonName" />
+
+
+                <EditText
+                    android:id="@+id/update_lastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/update_FirstName"
+                    android:layout_marginTop="20dp"
+                    android:hint="Last Name"
+                    android:inputType="textPersonName" />
+
+                <EditText
+                    android:id="@+id/update_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/update_lastName"
+                    android:layout_marginTop="20dp"
+                    android:hint="Gender"
+                    android:inputType="textPersonName" />
+
+                <EditText
+                    android:id="@+id/updatePhoneNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/update_gender"
+                    android:layout_marginTop="20dp"
+                    android:hint="Monile Number"
+                    android:inputType="textPhonetic" />
+
+                <EditText
+                    android:id="@+id/country_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/updatePhoneNo"
+                    android:layout_marginTop="20dp"
+                    android:hint="Country"
+                    android:inputType="textPersonName" />
+
+
+                <Button
+                    android:id="@+id/updatebtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/country_name"
+                    android:layout_marginTop="35dp"
+                    android:text="Update Profile" />
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

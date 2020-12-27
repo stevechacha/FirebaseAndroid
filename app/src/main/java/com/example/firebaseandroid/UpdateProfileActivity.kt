@@ -13,6 +13,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import java.lang.Exception
 
@@ -46,7 +47,7 @@ class UpdateProfileActivity : AppCompatActivity() {
             val phoneNo=mPhoneNo.text.toString().toInt()
             val country=mCountry.text.toString()
             val person=Person(firstName,lastName,gender,country,phoneNo)
-           // savePerson(person)
+//            savePerson(person)
 
         }
 
@@ -56,7 +57,7 @@ class UpdateProfileActivity : AppCompatActivity() {
     private fun retrivePersonData()= CoroutineScope(Dispatchers.IO).launch {
         try {
 
-            val querrySnapshot=personCollectionR.get().isSuccessful
+            val querrySnapshot=personCollectionR.get().await()
 
             withContext(Dispatchers.Main){
                 Toast.makeText(this@UpdateProfileActivity,"succesfully", Toast.LENGTH_LONG).show()
@@ -72,7 +73,7 @@ class UpdateProfileActivity : AppCompatActivity() {
 
     private fun savePerson(person: Person)= CoroutineScope(Dispatchers.IO).launch {
         try {
-            personCollectionR.add(person).isSuccessful
+            personCollectionR.add(person).await()
             withContext(Dispatchers.Main){
                 Toast.makeText(this@UpdateProfileActivity,"succesfully", Toast.LENGTH_LONG).show()
             }

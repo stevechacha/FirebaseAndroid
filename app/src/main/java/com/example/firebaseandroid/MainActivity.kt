@@ -7,6 +7,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import com.example.firebaseandroid.databinding.ActivityMainBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -23,36 +25,20 @@ import java.lang.Exception
 const val REQUEST_CODE_SIGN_IN=0
 
 class MainActivity : AppCompatActivity() {
-
+    private lateinit var binding:ActivityMainBinding
     lateinit var mAuth:FirebaseAuth
-
-    lateinit var mGoogleSignButton: Button
-
-    lateinit var mRegiterEmail:EditText
-    lateinit var mRegisterPassword:EditText
-    lateinit var mConfirmRegisterPassword:EditText
-    lateinit var mRegisterButton:Button
-    lateinit var mLoggedIn:TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
         mAuth=FirebaseAuth.getInstance()
+        binding=DataBindingUtil.setContentView(this,R.layout.activity_main)
 
-        mRegiterEmail=findViewById(R.id.register_email)
-        mRegisterPassword=findViewById(R.id.register_password)
-        mConfirmRegisterPassword=findViewById(R.id.register_confirm_password)
-        mRegisterButton=findViewById(R.id.btn_register)
-        mLoggedIn=findViewById(R.id.textEmailReg)
-
-        mGoogleSignButton=findViewById(R.id.btnGoogleSignIn)
-
-        mRegisterButton.setOnClickListener {
+        binding.btnRegister.setOnClickListener {
             registerUser()
         }
 
-        mGoogleSignButton.setOnClickListener {
+        binding.btnGoogleSignIn.setOnClickListener {
             val options= GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.webclient_id))
                 .requestEmail()
@@ -87,18 +73,20 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode==REQUEST_CODE_SIGN_IN){
-            val account=GoogleSignIn.getSignedInAccountFromIntent(data).result
-            account?.let {
-                googleAuthForFirebase(it)
-            }
+            val intent=Intent(this,UpdateProfileActivity::class.java)
+            startActivity(intent)
+//            val account=GoogleSignIn.getSignedInAccountFromIntent(data).result
+//            account?.let {
+//                googleAuthForFirebase(it)
+//            }
         }
     }
 
 
     private fun registerUser() {
-        val email=mRegiterEmail.text.toString().trim()
-        val password=mRegisterPassword.text.toString().trim()
-        val confirm_pasword=mConfirmRegisterPassword.text.toString().trim()
+        val email=binding.registerEmail.text.toString().trim()
+        val password=binding.registerPassword.text.toString().trim()
+        val confirm_pasword=binding.registerConfirmPassword.text.toString().trim()
 
         if (email.isNotEmpty() && password==confirm_pasword){
 
@@ -126,10 +114,10 @@ class MainActivity : AppCompatActivity() {
     private fun checkLoggedInState() {
 
         if (mAuth.currentUser==null){
-            mLoggedIn.text="You are not logged In"
+            binding.textEmailReg.text="You are not logged In"
 
         } else{
-            mLoggedIn.text="You are logged in"
+            binding.textEmailReg.text="You are logged in"
         }
 
     }
